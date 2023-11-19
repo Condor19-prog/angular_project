@@ -1,0 +1,20 @@
+<div class="py-4 px-6 border rounded flex items-center flex-col transition-transform hover:scale-105">
+  <img [src]="product?.image" alt="image" class="w-1/6 mb-2">
+  <h2 class="mb-2 text-md text-center">{{product?.title}}</h2>
+  <p>Price: <span class="font-bold">{{product?.price | currency: 'RUB'}}</span></p>
+  <button
+    (click)="details = !details"
+    class="border rounded bg-yellow-400 py-2 px-4"
+    [ngClass]="{
+          'bg-yellow-400': !details,
+          'bg-blue-400': details
+          }"
+  >
+    {{details ? 'Hide details' : 'Show details'}}
+  </button>
+
+  <div class="flex flex-col items-center" *ngIf="details">
+    <p class="text-center">{{product?.description}}</p>
+    <p [ngStyle]="{fontWeight: 'bold'}">{{product?.rating?.rate | number: '2.2-4'}}</p>
+  </div>
+</div>
