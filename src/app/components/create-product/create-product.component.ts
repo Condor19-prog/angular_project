@@ -28,7 +28,6 @@ export class CreateProductComponent implements OnInit {
   })
 
   get title() {
-    console.log(this.form.controls)
     return this.form.controls.title as FormControl
   }
 
@@ -37,8 +36,10 @@ export class CreateProductComponent implements OnInit {
   }
 
   submit() {
+    if (!this.form.value.title) return;
+
     this.serviceProduct.create({
-      title: this.form.value as string,
+      title: this.form.value.title,
       price: 13.5,
       description: 'lorem ipsum set',
       image: 'https://i.pravatar.cc',
